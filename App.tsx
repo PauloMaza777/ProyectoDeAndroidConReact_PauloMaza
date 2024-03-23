@@ -5,14 +5,19 @@
  * @format
  */
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
+import React, { useState } from 'react';
+import type { PropsWithChildren } from 'react';
 import {
+  Alert,
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
+  TextInput,
+  Touchable,
+  TouchableOpacity,
   useColorScheme,
   View,
 } from 'react-native';
@@ -24,12 +29,13 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import RoundButton from './components/controls/RoundButton';
 
 type SectionProps = PropsWithChildren<{
   title: string;
 }>;
 
-function Section({children, title}: SectionProps): React.JSX.Element {
+function Section({ children, title }: SectionProps): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -57,6 +63,11 @@ function Section({children, title}: SectionProps): React.JSX.Element {
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+  const [nombre, setNombre] = useState('')
+  const buttonOnPress = async () => {
+    await Alert.alert('Hola', `Hola ${nombre}`);
+    await Alert.alert('otro alert', `Una prueba del otro alert`);
+  }
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -66,17 +77,18 @@ function App(): React.JSX.Element {
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor={backgroundStyle.backgroundColor}
+        backgroundColor="#D94021"
+        translucent={false} //recorre una linea hacia arriba si es true
       />
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
+        {/* <Header /> //imagen del encabezado */}
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
+          {/* <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
           </Section>
@@ -89,7 +101,13 @@ function App(): React.JSX.Element {
           <Section title="Learn More">
             Read the docs to discover what to do next:
           </Section>
-          <LearnMoreLinks />
+          <LearnMoreLinks /> */}
+          <Text>INTRODUCE TU NOMBRE</Text>
+          <TextInput style={styles.textInput} onChangeText={setNombre} />
+          <TouchableOpacity style={styles.button} onPress={buttonOnPress}>
+            <Text style={styles.buttonText}>di hola</Text>
+          </TouchableOpacity>
+          <RoundButton title= "Bóton redondo" onPress={buttonOnPress}/>
         </View>
       </ScrollView>
     </SafeAreaView>
@@ -112,6 +130,27 @@ const styles = StyleSheet.create({
   },
   highlight: {
     fontWeight: '700',
+  },
+  textInput: {
+    // borderBlockColor: 'black',
+    borderWidth: 1,
+    borderRadius: 4,
+    borderStyle: 'solid',
+    margin: 8,
+    backgroundColor: 'pink',
+  },
+  button: {
+    backgroundColor: 'pink',
+    borderRadius: 100,
+    padding: 16,
+    color: 'white',
+    alignItems: 'center',
+  },
+  buttonText: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'white',
+    textTransform: 'uppercase',
   },
 });
 
