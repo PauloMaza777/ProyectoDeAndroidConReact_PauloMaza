@@ -31,6 +31,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import RoundButton from './components/controls/RoundButton';
+import { DrawerActions, NavigationContainer } from '@react-navigation/native';
+import DrawerScreens from './Navigation/Drawer/DrawerScreens';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -63,6 +65,7 @@ function Section({ children, title }: SectionProps): React.JSX.Element {
 }
 
 function App(): React.JSX.Element {
+
   const isDarkMode = useColorScheme() === 'dark';
   const [nombre, setNombre] = useState('')
   const buttonOnPress = async () => {
@@ -76,6 +79,7 @@ function App(): React.JSX.Element {
 
   return (
     <SafeAreaView style={backgroundStyle}>
+
       <StatusBar
         barStyle={isDarkMode ? 'light-content' : 'dark-content'}
         backgroundColor="#D94021"
@@ -107,7 +111,7 @@ function App(): React.JSX.Element {
           <LearnMoreLinks /> */}
 
           <View style={styles.container}>
-            <Image style={styles.logo} source={{ uri: "https://th.bing.com/th/id/OIG2.4nSem3wG4Q5_gi6mxit2?w=1024&h=1024&rs=1&pid=ImgDetMain" }} />
+            <Image style={styles.logo} source={require('./imagenes/logo2.png')} />
           </View>
 
           {/* <Text>INTRODUCE TU NOMBRE</Text>
@@ -142,7 +146,9 @@ function App(): React.JSX.Element {
           <Text style={styles.text}>CATEGORIAS</Text>
 
         </View>
+
       </ScrollView>
+
     </SafeAreaView>
   );
 }
