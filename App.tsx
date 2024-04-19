@@ -5,151 +5,54 @@
  * @format
  */
 
-import React, { useState } from 'react';
-import type { PropsWithChildren } from 'react';
+import React, {useRef, useState} from 'react';
+import type {PropsWithChildren} from 'react';
 import {
   Alert,
-  Button,
+  // Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
-  Touchable,
+  // TextInput,
+  // Touchable,
   TouchableOpacity,
   useColorScheme,
   View,
   Image,
 } from 'react-native';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RoundButton from './components/controls/RoundButton';
-import { DrawerActions, NavigationContainer } from '@react-navigation/native';
+import {DrawerActions, NavigationContainer} from '@react-navigation/native';
 import DrawerScreens from './Navigation/Drawer/DrawerScreens';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({ children, title }: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
+function App(): React.JSX.Element {
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
+    <SafeAreaView>
+      <ScrollView>
+        <View style={styles.container}>
+          <Image style={styles.logo} source={require('./imagenes/logo2.png')} />
+        </View>
+
+        <View style={styles.container2}>
+          <Boton1 texto="CATEGORÍAS" />
+          <Boton1 texto="NOTICIAS" />
+          <Boton1 texto="PÓDCASTS" />
+          <Boton1 texto="ESPORTS" />
+        </View>
+        <Text style={styles.text}>CATEGORIAS</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-function App(): React.JSX.Element {
-
-  const isDarkMode = useColorScheme() === 'dark';
-  const [nombre, setNombre] = useState('')
-  const buttonOnPress = async () => {
-    await Alert.alert('Hola', `Hola ${nombre}`);
-    await Alert.alert('otro alert', `Una prueba del otro alert`);
-  }
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
+function Boton1({texto}: {texto: string}) {
   return (
-    <SafeAreaView style={backgroundStyle}>
-
-      <StatusBar
-        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-        backgroundColor="#D94021"
-        translucent={false} //recorre una linea hacia arriba si es true
-      />
-
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        {/* <Header /> //imagen del encabezado */}
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-
-          {/* <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks /> */}
-
-          <View style={styles.container}>
-            <Image style={styles.logo} source={require('./imagenes/logo2.png')} />
-          </View>
-
-          {/* <Text>INTRODUCE TU NOMBRE</Text>
-          <TextInput style={styles.textInput} onChangeText={setNombre} /> */}
-
-
-          {/* <TouchableOpacity style={styles.button} onPress={buttonOnPress}>
-            <Text style={styles.buttonText}>di hola</Text>
-          </TouchableOpacity>
-          <RoundButton title="Bóton redondo" onPress={buttonOnPress} /> */}
-
-          <View style={styles.container2}>
-
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>CATEGORÍAS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>NOTICIAS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>PÓDCASTS</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>ESPORTS</Text>
-            </TouchableOpacity>
-
-          </View>
-
-          <Text style={styles.text}>CATEGORIAS</Text>
-
-        </View>
-
-      </ScrollView>
-
-    </SafeAreaView>
+    <TouchableOpacity style={styles.button} onPress={() => {}}>
+      <Text style={styles.buttonText}>{texto}</Text>
+    </TouchableOpacity>
   );
 }
 
@@ -174,7 +77,7 @@ const styles = StyleSheet.create({
     marginTop: 40,
     textAlign: 'center',
     fontSize: 20,
-    color: 'black'
+    color: 'black',
   },
   textInput: {
     // borderBlockColor: 'black',
