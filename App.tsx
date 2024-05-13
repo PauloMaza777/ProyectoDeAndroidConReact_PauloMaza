@@ -21,21 +21,26 @@ const App = (): React.JSX.Element => {
 
   // Vista del cajón con contenido
   const navigationView = () => (
-    <View style={[styles.drawerContent, styles.navigationContainer]}>
-      <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-        <Icon name="home" size={20} color="black" />
-        <Text style={styles.drawerButtonText}>Inicio</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-        <Icon name="user" size={20} color="black" />
-        <Text style={styles.drawerButtonText}>Perfil</Text>
-      </TouchableOpacity>
-      {/* Agrega más botones con iconos según sea necesario */}
-      {/* <Button
+    <SafeAreaView style={styles.safeAreaNavigation}>
+      <View style={[styles.drawerContent, styles.navigationContainer]}>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="user" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Perfil</Text>
+        </TouchableOpacity>
+
+        {/* Agrega más botones con iconos según sea necesario */}
+        {/* <Button
         title="Cerrar Cajón"
         onPress={() => drawerRef.current?.closeDrawer()} // Cerrar el cajón
       /> */}
-    </View>
+      </View>
+      <View style={[styles.drawerContent2, styles.navigationContainer]}>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="home" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Comunidad</Text>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
   );
 
   return (
@@ -76,6 +81,10 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
   },
+  safeAreaNavigation: {
+    flex: 1,
+    backgroundColor: '#ecf0f1',
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -114,7 +123,13 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   drawerContent: {
-    flex: 1,
+    marginTop: 200,
+    marginBottom: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ecf0f1',
+  },
+  drawerContent2: {
     justifyContent: 'center',
     // alignItems: 'center',
     backgroundColor: '#ecf0f1',
