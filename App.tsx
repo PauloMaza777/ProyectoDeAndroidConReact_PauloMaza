@@ -13,9 +13,9 @@ import {
 
 import Icon from 'react-native-vector-icons/FontAwesome'; // Importamos el icono FontAwesome
 
-const logo2 = require('./imagenes/logo2.png'); // Asegúrate de tener la ruta correcta del logo
+const logo2 = require('./imagenes/logo2.png'); //Logo
 
-// Tu componente principal
+// Componente principal
 const App = (): React.JSX.Element => {
   const drawerRef = useRef<DrawerLayoutAndroid>(null); // Referencia del cajón
 
@@ -27,17 +27,28 @@ const App = (): React.JSX.Element => {
           <Icon name="user" size={20} color="black" />
           <Text style={styles.drawerButtonText}>Perfil</Text>
         </TouchableOpacity>
-
-        {/* Agrega más botones con iconos según sea necesario */}
-        {/* <Button
-        title="Cerrar Cajón"
-        onPress={() => drawerRef.current?.closeDrawer()} // Cerrar el cajón
-      /> */}
       </View>
+
       <View style={[styles.drawerContent2, styles.navigationContainer]}>
         <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
           <Icon name="home" size={20} color="black" />
           <Text style={styles.drawerButtonText}>Comunidad</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="home" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Foros</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="home" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Biblioteca</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="home" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Categorias</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+          <Icon name="home" size={20} color="black" />
+          <Text style={styles.drawerButtonText}>Configuración</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
