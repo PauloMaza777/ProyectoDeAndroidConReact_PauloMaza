@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef} from 'react';
 import {
   Button,
   DrawerLayoutAndroid,
@@ -11,27 +11,30 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+import Icon from 'react-native-vector-icons/FontAwesome'; // Importamos el icono FontAwesome
+
 const logo2 = require('./imagenes/logo2.png'); // Asegúrate de tener la ruta correcta del logo
 
 // Tu componente principal
 const App = (): React.JSX.Element => {
   const drawerRef = useRef<DrawerLayoutAndroid>(null); // Referencia del cajón
-  const [drawerPosition, setDrawerPosition] = useState<'left' | 'right'>(
-    'left',
-  ); // Posición del cajón
-
-  const toggleDrawerPosition = () => {
-    setDrawerPosition(prev => (prev === 'left' ? 'right' : 'left')); // Alternar posición
-  };
 
   // Vista del cajón con contenido
   const navigationView = () => (
     <View style={[styles.drawerContent, styles.navigationContainer]}>
-      <Text style={styles.drawerText}>Estoy en el cajón!</Text>
-      <Button
+      <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+        <Icon name="home" size={20} color="black" />
+        <Text style={styles.drawerButtonText}>Inicio</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+        <Icon name="user" size={20} color="black" />
+        <Text style={styles.drawerButtonText}>Perfil</Text>
+      </TouchableOpacity>
+      {/* Agrega más botones con iconos según sea necesario */}
+      {/* <Button
         title="Cerrar Cajón"
         onPress={() => drawerRef.current?.closeDrawer()} // Cerrar el cajón
-      />
+      /> */}
     </View>
   );
 
@@ -40,9 +43,11 @@ const App = (): React.JSX.Element => {
       <DrawerLayoutAndroid
         ref={drawerRef} // Referencia del cajón
         drawerWidth={300} // Ancho del cajón
-        drawerPosition={drawerPosition} // Posición del cajón
         renderNavigationView={navigationView} // Contenido del cajón
       >
+        <TouchableOpacity onPress={() => drawerRef.current?.openDrawer()}>
+          <Icon name="home" size={20} color="red" />
+        </TouchableOpacity>
         <ScrollView>
           <View style={styles.container}>
             <Image style={styles.logo} source={logo2} />
@@ -53,18 +58,6 @@ const App = (): React.JSX.Element => {
             <Boton1 texto="NOTICIAS" />
             <Boton1 texto="PÓDCASTS" />
             <Boton1 texto="ESPORTS" />
-          </View>
-
-          <View style={styles.container3}>
-            <Text style={styles.paragraph}>Cajón a la {drawerPosition}</Text>
-            <Button
-              title="Cambiar Posición del Cajón"
-              onPress={toggleDrawerPosition}
-            />
-            <Button
-              title="Abrir Cajón"
-              onPress={() => drawerRef.current?.openDrawer()} // Botón para abrir el cajón
-            />
           </View>
         </ScrollView>
       </DrawerLayoutAndroid>
@@ -123,7 +116,7 @@ const styles = StyleSheet.create({
   drawerContent: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
+    // alignItems: 'center',
     backgroundColor: '#ecf0f1',
   },
   drawerText: {
@@ -131,6 +124,15 @@ const styles = StyleSheet.create({
   },
   navigationContainer: {
     backgroundColor: '#ecf0f1', // Agregamos el estilo para el contenido del cajón
+  },
+  drawerButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 20,
+  },
+  drawerButtonText: {
+    marginLeft: 20,
+    fontSize: 18,
   },
 });
 
