@@ -1,62 +1,72 @@
 import React, {useRef} from 'react';
 import {
-  Button,
-  DrawerLayoutAndroid,
-  Text,
+  // DrawerLayoutAndroid,
+  // Text,
   StyleSheet,
-  View,
-  Image,
+  // View,
+  // Image,
   SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
+  // ScrollView,
+  // TouchableOpacity,
 } from 'react-native';
+import Login from './Navigation/Screens/Login';
+// import Icon from 'react-native-vector-icons/FontAwesome'; // Importamos el icono FontAwesome
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+import UserScreen from './Navigation/Screens/UserScreen';
+import HomeScreen from './Navigation/Screens/HomeScreen';
 
-import Icon from 'react-native-vector-icons/FontAwesome'; // Importamos el icono FontAwesome
+// const logo2 = require('./imagenes/logo2.png'); //Logo
+const Stack = createStackNavigator<RootStackParamList>();
 
-const logo2 = require('./imagenes/logo2.png'); //Logo
+export type RootStackParamList = {
+  Login: undefined;
+  UserScreen: undefined;
+  HomeScreen: undefined;
+};
 
 // Componente principal
 const App = (): React.JSX.Element => {
-  const drawerRef = useRef<DrawerLayoutAndroid>(null); // Referencia del cajón
+  // const drawerRef = useRef<DrawerLayoutAndroid>(null); // Referencia del cajón
 
-  // Vista del cajón con contenido
-  const navigationView = () => (
-    <SafeAreaView style={styles.safeAreaNavigation}>
-      <View style={[styles.drawerContent, styles.navigationContainer]}>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="user" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Perfil</Text>
-        </TouchableOpacity>
-      </View>
+  // // Vista del cajón con contenido
+  // const navigationView = () => (
+  //   <SafeAreaView style={styles.safeAreaNavigation}>
+  //     <View style={[styles.drawerContent, styles.navigationContainer]}>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="user" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Perfil</Text>
+  //       </TouchableOpacity>
+  //     </View>
 
-      <View style={[styles.drawerContent2, styles.navigationContainer]}>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="home" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Comunidad</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="home" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Foros</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="home" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Biblioteca</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="home" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Categorias</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
-          <Icon name="home" size={20} color="black" />
-          <Text style={styles.drawerButtonText}>Configuración</Text>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
+  //     <View style={[styles.drawerContent2, styles.navigationContainer]}>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="home" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Comunidad</Text>
+  //       </TouchableOpacity>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="home" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Foros</Text>
+  //       </TouchableOpacity>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="home" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Biblioteca</Text>
+  //       </TouchableOpacity>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="home" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Categorias</Text>
+  //       </TouchableOpacity>
+  //       <TouchableOpacity style={styles.drawerButton} onPress={() => {}}>
+  //         <Icon name="home" size={20} color="black" />
+  //         <Text style={styles.drawerButtonText}>Configuración</Text>
+  //       </TouchableOpacity>
+  //     </View>
+  //   </SafeAreaView>
+  // );
 
   return (
     <SafeAreaView style={styles.safeArea}>
-      <DrawerLayoutAndroid
+      {/* <DrawerLayoutAndroid
         ref={drawerRef} // Referencia del cajón
         drawerWidth={300} // Ancho del cajón
         renderNavigationView={navigationView} // Contenido del cajón
@@ -76,17 +86,25 @@ const App = (): React.JSX.Element => {
             <Boton1 texto="ESPORTS" />
           </View>
         </ScrollView>
-      </DrawerLayoutAndroid>
+      </DrawerLayoutAndroid> */}
+
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="HomeScreen" component={HomeScreen} />
+          <Stack.Screen name="UserScreen" component={UserScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 };
 
 // Componente de botón personalizado
-const Boton1 = ({texto}: {texto: string}) => (
-  <TouchableOpacity style={styles.button} onPress={() => {}}>
-    <Text style={styles.buttonText}>{texto}</Text>
-  </TouchableOpacity>
-);
+// const Boton1 = ({texto}: {texto: string}) => (
+//   <TouchableOpacity style={styles.button} onPress={() => {}}>
+//     <Text style={styles.buttonText}>{texto}</Text>
+//   </TouchableOpacity>
+// );
 
 const styles = StyleSheet.create({
   safeArea: {
